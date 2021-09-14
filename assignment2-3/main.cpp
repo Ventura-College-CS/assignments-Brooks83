@@ -14,7 +14,7 @@ void makeNumbers(double *&ptr)
 }
 
 
-// Sort numbers - increasing 
+// Sort numbers - increasing
 void sortNumbers(double *&ptr)
 {
     double temp;
