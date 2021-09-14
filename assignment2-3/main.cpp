@@ -57,7 +57,5 @@ int main()
     printNumbers(array_ptr);
     deleteNumbers(array_ptr);
 
-    std::cout << "complete";
-
     return 0;
 }
