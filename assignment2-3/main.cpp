@@ -3,11 +3,11 @@
 #include <random>
 
 
-const int array_size = 10;
+
 
 // Generate random numbers and store to dynamic memory.
 // Pass reference of pointer to all fxns to prevent different memory addresses.
-void makeNumbers(double *&ptr)
+void makeNumbers(double *&ptr, const int array_size)
 {
     for (int i = 0; i<array_size; i++)
         *(ptr+i) = (((double)rand())/rand()) * 100;
@@ -15,28 +15,16 @@ void makeNumbers(double *&ptr)
 
 
 // Sort numbers - increasing
-void sortNumbers(double *&ptr)
+void sortNumbers(double *&ptr, const int array_size)
 {
-    double temp;
-    for(int i = 0; i<array_size; i++)
-	{
-		for(int j = i+1; j<array_size; j++)
-		{
-			if(*(ptr+i) > *(ptr+j))
-			{
-				temp = *(ptr+i);
-				*(ptr+i) = *(ptr+j);
-				*(ptr+j) = temp;
-			}
-		}
-	}
+    std::sort(ptr, ptr+array_size);
 }
 
 
-void printNumbers(double *&ptr)
+void printNumbers(double *&ptr, const int array_size)
 {
     for (int i = 0; i<array_size; i++)
-        std::cout << *(ptr+i) << " ";
+        std::cout << i << ": " << *(ptr+i) << " ";
 }
 
 
@@ -49,13 +37,13 @@ void deleteNumbers(double *&array_ptr)
 
 int main()
 {
-    double *array_ptr;
-    array_ptr = new double [array_size];     // Pointer to array.
+    const int array_size = 10;
+    double *array_ptr = new double [array_size];     // Pointer to array.
     
-    makeNumbers(array_ptr);
-    sortNumbers(array_ptr);
-    printNumbers(array_ptr);
-    deleteNumbers(array_ptr);
+    makeNumbers(array_ptr, array_size);
+    sortNumbers(array_ptr, array_size);
+    printNumbers(array_ptr, array_size);
+    deleteNumbers(array_ptr);   
 
     return 0;
 }
